@@ -6,18 +6,20 @@
     <style>
         body { margin: 0; overflow: hidden; background-color: #222; }
     </style>
-    <script async src="https://unpkg.com/three@0.174.0/build/three.module.min.js"></script>
-
     <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com",
-                "three/addons/": "https://unpkg.com"
-            }
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.174.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.174.0/examples/jsm/"
         }
-        </script>
+    }
+    </script>
+</head>
 <body>
-<script>
+<script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
     // Ihre Matrix (3x4x3)
     const data = [
         [[0, 0, 1], [1, 0, 1], [1, 0, 1], [1, 1, 1]], // Ebene 0
@@ -33,8 +35,8 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Initialisierung der lokalen OrbitControls
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    // Initialisierung der OrbitControls
+    const controls = new OrbitControls(camera, renderer.domElement);
 
     const geometry = new THREE.BoxGeometry(0.9, 0.9, 0.9);
     const material = new THREE.MeshNormalMaterial();
